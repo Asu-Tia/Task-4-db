@@ -19,7 +19,7 @@ public class RadioCharts {
     }
 
     public String getMostPlayedSong() {
-        String query = "SELECT song FROM music_broadcast GROUP BY song ORDER BY SUM(times_aired) DESC LIMIT 1";
+        String query = "SELECT song FROM music_broadcast GROUP BY song ORDER BY SUM(times_aired) DESC, artist LIMIT 1";
         try (Connection connection = DriverManager.getConnection(url, user, password);
              ResultSet rs = connection.createStatement().executeQuery(query)) {
             if (rs.next()) {
