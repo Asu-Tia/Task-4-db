@@ -32,7 +32,7 @@ public class RadioCharts {
     }
 
     public String getMostActiveArtist() {
-        String query = "SELECT artist FROM music_broadcast GROUP BY song ORDER BY COUNT(*) DESC LIMIT 1";
+        String query = "SELECT artist FROM music_broadcast GROUP BY artist ORDER BY COUNT(DISTINCT song) DESC LIMIT 1";
         try (Connection connection = DriverManager.getConnection(url, user, password);
              ResultSet rs = connection.createStatement().executeQuery(query)) {
             if (rs.next()) {
